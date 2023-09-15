@@ -1,0 +1,37 @@
+
+volumes:
+  db-data:
+
+services:
+  tripix-api:
+    container_name: tripix-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.local
+    depends_on:
+      - tripix-migrate
+      - tripix-pg
+
+  tripix-migrate:
+    container_name: tripix-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "python manage.py migrate"
+    env_file:
+      - .env.local
+    depends_on:
+      - tripix-pg
+
+  tripix-pg:
+    image: postgres:15-alpine
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    env_file:
+      - .env.local
+    ports:
+      - "5432:5432"

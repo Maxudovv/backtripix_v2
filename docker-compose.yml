@@ -28,9 +28,10 @@ services:
 
   tripix-pg:
     image: postgres:15-alpine
+    container_name: tripix-pg
     volumes:
       - db-data:/var/lib/postgresql/data
     env_file:
       - .env.local
-    expose:
-      - "5432"
+    ports:
+      - "5432:5432"

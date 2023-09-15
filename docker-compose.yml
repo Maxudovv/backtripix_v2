@@ -14,10 +14,9 @@ services:
       - .env.local
     depends_on:
       - tripix-migrate
-      - tripix-pg
 
   tripix-migrate:
-    container_name: tripix-api
+    container_name: tripix-migrate
     build:
       context: .
       dockerfile: Dockerfile
@@ -33,5 +32,5 @@ services:
       - db-data:/var/lib/postgresql/data
     env_file:
       - .env.local
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"

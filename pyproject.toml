@@ -4,13 +4,15 @@ version = "0.1.0"
 description = ""
 authors = ["Abdulmalik Maxudov <maxudov.ar@getflow.tech>"]
 readme = "README.md"
-packages = [{include = "backtripix_v2"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 django = "^4.2.5"
+django-postgres-extra = "^2.0.8"
+psycopg2-binary = "^2.9.7"
 
 [tool.poetry.dev-dependencies]
+pre-commit = "*"
 
 [build-system]
 requires = ["poetry-core"]

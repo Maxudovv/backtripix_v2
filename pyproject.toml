@@ -13,8 +13,34 @@ psycopg2-binary = "^2.9.7"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "*"
+autoflake = "*"
+isort = "*"
 
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.black]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+line_length=88
+multi_line_output=3
+include_trailing_comma=true
+old_finders=true
+default_section="FIRSTPARTY"
+combine_as_imports=true
 

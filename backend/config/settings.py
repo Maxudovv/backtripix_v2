@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     "psqlextra",
     "auth.apps.AuthConfig",
     "app.apps.MainAppConfig",
+    "drf_yasg2",
 ]
+
+DEFAULT_GENERATOR_CLASS = "drf_yasg2.generators.OpenAPISchemaGenerator"
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),

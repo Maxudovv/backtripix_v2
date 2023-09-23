@@ -1,3 +1,3 @@
 Backend of mobile app called "Tripix"
 
-Stack: Python3.9, Django 4
+Stack: Python3.9, Django 3

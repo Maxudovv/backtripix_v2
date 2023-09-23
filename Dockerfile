@@ -1,12 +1,14 @@
-FROM getflow/python-poetry:stable-python3.9 as base
+FROM python:3.9.18
+
 
 WORKDIR /app/
+RUN cd /app/
 
-COPY pyproject.toml poetry.lock /app/
+COPY Pipfile.lock Pipfile /app/
 
-RUN poetry config virtualenvs.create false \
-&& poetry install --without dev
+RUN apt update && apt install -y pipenv
+RUN pipenv --python python3 && pipenv install
 
 COPY backend .
 
-CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["pipenv", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]

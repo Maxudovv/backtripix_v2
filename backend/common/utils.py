@@ -1,3 +1,4 @@
+import os
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -44,3 +45,10 @@ def send_thank_you_message(email):
 
 def str2bool(v):
     return v.lower() in ("yes", "true", "t", "1")
+
+
+def reduce_path(file_name, times):
+    result = os.path.realpath(file_name)
+    for i in range(times):
+        result = os.path.dirname(result)
+    return result

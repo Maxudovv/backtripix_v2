@@ -48,12 +48,14 @@ class User(AbstractUser):
     region = models.ForeignKey(
         Region, on_delete=models.SET_NULL, null=True, verbose_name="Регион"
     )
+
     original_avatar = ProcessedImageField(
         upload_to=upload_to,
         format="JPEG",
         null=True,
         blank=True,
     )
+
     small_avatar = ImageSpecField(
         source="original_avatar",
         processors=[SmartResize(width=48, height=48, upscale=True)],

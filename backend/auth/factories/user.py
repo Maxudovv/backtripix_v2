@@ -13,6 +13,5 @@ class UserFactory(DjangoModelFactory):
     last_name = factory.Sequence(lambda n: f"last_name {n}")
     password = factory.PostGenerationMethodCall("set_password", "qwerty123")
     email = factory.Sequence(lambda n: f"email-{n}@gmail.com")
-    selected_country = factory.SubFactory("app.factories.country.CountryFactory")
+    region = factory.SubFactory("app.factories.region.RegionFactory")
     original_avatar = ImageField(color="red", width=600, height=600)
-    phone_number = factory.Faker("phone_number")

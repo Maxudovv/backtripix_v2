@@ -26,10 +26,10 @@ class GoogleOauth(BaseAuth):
             )
         return ProviderResult(
             status=ProviderResult.STATUS.SUCCESS,
-            user_data=self._get_user_data(response),
+            user_data=self.get_user_data(response),
         )
 
-    def _get_user_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
+    def get_user_data(self, data: Dict[str, Any]) -> Dict[str, Any]:
         result = {"provider_key": data["sub"]}
         if {"email_verified", "email"} <= data.keys() and str2bool(
             data["email_verified"]

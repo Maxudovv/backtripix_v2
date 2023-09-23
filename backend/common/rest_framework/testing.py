@@ -7,7 +7,6 @@ from rest_framework.test import APIClient, APITestCase
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from auth.models import User
-from common.models import LANGUAGE
 
 
 @dataclass
@@ -36,7 +35,7 @@ class BaseTestCase(APITestCase):
         super().setUp()
         translation.activate("en")
 
-    def add_params(self, url: str, **kwargs):
+    def add_params(self, url: str, **kwargs) -> str:
         """
         Returns url with added params.
 
@@ -45,7 +44,7 @@ class BaseTestCase(APITestCase):
         """
         return f"{url}?{urlencode(kwargs)}"
 
-    def update_obj(self, obj, **kwargs):
+    def update_obj(self, obj, **kwargs) -> None:
         """
         Updates object with given values.
 
@@ -58,7 +57,3 @@ class BaseTestCase(APITestCase):
         for field, value in kwargs.items():
             setattr(obj, field, value)
         obj.save(update_fields=list(kwargs.keys()))
-
-    def mock_request(self, user=None, language=LANGUAGE.RU):
-        request = MockRequest(user=user, language=language)
-        return request

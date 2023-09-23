@@ -2,15 +2,6 @@ from django.core.validators import RegexValidator
 from django.db import models
 
 
-class CURRENCY(models.TextChoices):
-    RUB = "RUB", "₽"
-    KZT = "KZT", "₸"
-    BHD = "BHD", "BHD"
-    AED = "AED", "AED"
-    USD = "USD", "$"
-    EUR = "EUR", "€"
-
-
 class Country(models.Model):
     code = models.CharField(
         "Code",
@@ -23,10 +14,9 @@ class Country(models.Model):
             )
         ],
     )
-    currency = models.CharField(max_length=3, choices=CURRENCY.choices)
 
     def __str__(self):
-        return "Russia"
+        return self.code
 
     class Meta:
         verbose_name = "Страна"

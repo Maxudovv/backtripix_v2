@@ -30,20 +30,6 @@ class Migration(migrations.Migration):
                         verbose_name="Code",
                     ),
                 ),
-                (
-                    "currency",
-                    models.CharField(
-                        choices=[
-                            ("RUB", "₽"),
-                            ("KZT", "₸"),
-                            ("BHD", "BHD"),
-                            ("AED", "AED"),
-                            ("USD", "$"),
-                            ("EUR", "€"),
-                        ],
-                        max_length=3,
-                    ),
-                ),
             ],
             options={
                 "verbose_name": "Страна",

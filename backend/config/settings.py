@@ -54,9 +54,10 @@ REST_FRAMEWORK = {
         "auth.backends.CustomJWTAuthentication",
         "rest_framework_simplejwt.authentication.JWTAuthentication",
     ),
-    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 20,
 }
+
 
 ACCESS_TOKEN_DURATION = timedelta(hours=24 * 7)
 REFRESH_TOKEN_DURATION = timedelta(days=28)
@@ -146,3 +147,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 ROOT_DIR = reduce_path(__file__, 4)
+UPLOAD_MEDIA_IMAGE_QUALITY = int(os.getenv("UPLOAD_MEDIA_IMAGE_QUALITY", 75))

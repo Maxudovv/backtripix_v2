@@ -4,12 +4,16 @@ from PIL import ImageOps
 
 
 def upload_to(instance, filename):
+    from app.models.project import ProjectMedia
     from auth.models.user import User
 
     ext = filename.split(".")[-1]
     filename = str(uuid.uuid4()) + f".{ext}"
-    if isinstance(instance, User):
+    type_ = type(instance)
+    if type_ is User:
         return f"users/avatars/{filename}"
+    elif type_ is ProjectMedia:
+        return f"projects/{filename}"
 
 
 class RemoveExifData(object):

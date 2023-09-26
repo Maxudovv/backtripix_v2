@@ -121,6 +121,7 @@ class SocialUserTokenObtainPair:
             fields_to_update = ["login_provider", "provider_key"]
         if email:
             user.email = email
+            user.is_registered = True
             fields_to_update.append("email")
             fields_to_update.append("is_registered")
         if first_name and last_name and not all((user.first_name, user.last_name)):

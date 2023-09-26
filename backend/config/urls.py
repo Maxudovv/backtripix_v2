@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
@@ -31,6 +32,14 @@ urlpatterns = [
         include(("auth.urls", "auth"), namespace="auth-service"),
         name="auth-service",
     ),
+    path(
+        "app-service/",
+        include(("app.urls", "app"), namespace="app-service"),
+        name="app-service",
+    ),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if settings.DJANGO_SILK_ENABLED:
+    urlpatterns += [url(r"^silk/", include("silk.urls", namespace="silk"))]

@@ -19,5 +19,4 @@ class Country(models.Model):
         return self.code
 
     class Meta:
-        verbose_name = "Страна"
-        verbose_name_plural = "Страны"
+        verbose_name_plural = "Countries"
